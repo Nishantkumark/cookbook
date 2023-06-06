@@ -14,7 +14,7 @@ pinecone.init(
     environment=os.environ.get("PINECONE_ENV"),
 )
 
-index_name = "langchain-demo"
+index_name = "chain-demo"
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
 embeddings = OpenAIEmbeddings()
 
@@ -52,6 +52,7 @@ def langchain_factory():
             content=welcome_message,
             accept=["text/plain", "application/pdf"],
             timeout=180,
+            max_size_mb=500
         ).send()
 
     docs = process_file(file)
